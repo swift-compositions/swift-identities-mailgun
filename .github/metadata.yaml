@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+description: "Mailgun email integration for swift-identities."
+topics:
+  - foundations
+  - authentication
+  - mailgun
+homepage: "https://swift-institute.org"
+readme:
+  family: E
