@@ -29,6 +29,17 @@ dependencies: [
 ]
 ```
 
+Add the product to your target:
+
+```swift
+.target(
+    name: "YourTarget",
+    dependencies: [
+        .product(name: "IdentitiesMailgun", package: "swift-identities-mailgun")
+    ]
+)
+```
+
 ## Usage
 
 ### Basic Setup with Live Mailgun
