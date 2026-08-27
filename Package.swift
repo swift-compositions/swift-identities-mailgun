@@ -43,15 +43,15 @@ let package = Package(
         .library(name: .identitiesMailgunLive, targets: [.identitiesMailgunLive])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-foundations/swift-identities-types.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-authentication.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-mailgun.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-emailaddress.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-email-html.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-logger-dependencies.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-translating.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-identities-types.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-authentication.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-mailgun.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-dependencies.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-emailaddress.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-html.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-email-html.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-logger-dependencies.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-translating.git", branch: "main"),
         .package(url: "https://github.com/apple/swift-log.git", branch: "main")
     ],
     targets: [
