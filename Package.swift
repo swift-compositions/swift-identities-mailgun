@@ -3,35 +3,6 @@
 import Foundation
 import PackageDescription
 
-extension String {
-    static let identitiesMailgun: Self = "IdentitiesMailgun"
-    static let identitiesMailgunLive: Self = "IdentitiesMailgunLive"
-}
-
-extension Target.Dependency {
-    static var identitiesMailgun: Self { .target(name: .identitiesMailgun) }
-    static var identitiesMailgunLive: Self { .target(name: .identitiesMailgunLive) }
-}
-
-extension Target.Dependency {
-    static var identitiesTypes: Self { .product(name: "IdentitiesTypes", package: "swift-identities-types") }
-    static var identities: Self { .product(name: "Identity Backend", package: "swift-authentication") }
-    static var mailgunMessages: Self { .product(name: "Mailgun Messages", package: "swift-mailgun") }
-    static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
-    static var emailAddress: Self { .product(name: "EmailAddress", package: "swift-emailaddress") }
-    static var html: Self { .product(name: "HTML", package: "swift-html") }
-    static var loggerDependencies: Self { .product(name: "Logger Dependencies", package: "swift-logger-dependencies") }
-    static var logging: Self { .product(name: "Logging", package: "swift-log") }
-    static var translatedString: Self { .product(name: "Translated String", package: "swift-translating") }
-    // The email document shell + email-safe components (Email.Document /
-    // VStack / Header / Paragraph / Link). Replaces the retired HTMLEmail and
-    // HTMLWebsite products, which swift-html no longer vends — it vends exactly
-    // one product, "HTML".
-    static var emailHTMLRendering: Self {
-        .product(name: "Email HTML Rendering", package: "swift-email-html")
-    }
-}
-
 let package = Package(
     name: "swift-identities-mailgun",
     platforms: [
@@ -39,8 +10,8 @@ let package = Package(
         .iOS(.v26)
     ],
     products: [
-        .library(name: .identitiesMailgun, targets: [.identitiesMailgun]),
-        .library(name: .identitiesMailgunLive, targets: [.identitiesMailgunLive])
+        .library(name: "IdentitiesMailgun", targets: ["IdentitiesMailgun"]),
+        .library(name: "IdentitiesMailgunLive", targets: ["IdentitiesMailgunLive"])
     ],
     dependencies: [
         .package(url: "https://github.com/swift-compositions/swift-identities-types.git", branch: "main"),
@@ -56,35 +27,34 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: .identitiesMailgun,
+            name: "IdentitiesMailgun",
             dependencies: [
-                .identitiesTypes,
-                .identities,
-                .mailgunMessages,
-                .emailAddress,
-                .html,
-                .emailHTMLRendering,
-                .translatedString
+                .product(name: "IdentitiesTypes", package: "swift-identities-types"),
+                .product(name: "Identity Backend", package: "swift-authentication"),
+                .product(name: "Mailgun Messages", package: "swift-mailgun"),
+                .product(name: "EmailAddress", package: "swift-emailaddress"),
+                .product(name: "HTML", package: "swift-html"),
+                .product(name: "Email HTML Rendering", package: "swift-email-html"),
+                .product(name: "Translated String", package: "swift-translating")
             ]
         ),
         .target(
-            name: .identitiesMailgunLive,
+            name: "IdentitiesMailgunLive",
             dependencies: [
-                .identitiesMailgun,
-                .dependencies,
-                .loggerDependencies,
-                .logging
+                .target(name: "IdentitiesMailgun"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "Logger Dependencies", package: "swift-logger-dependencies"),
+                .product(name: "Logging", package: "swift-log")
             ]
         ),
         .testTarget(
-            name: .identitiesMailgun.tests,
+            name: "IdentitiesMailgun Tests",
             dependencies: [
-                .identitiesMailgun,
-                .identitiesMailgunLive
+                .target(name: "IdentitiesMailgun"),
+                .target(name: "IdentitiesMailgunLive")
             ]
         )
     ],
     swiftLanguageModes: [.v6]
 )
 
-extension String { var tests: Self { "\(self) Tests" } }
